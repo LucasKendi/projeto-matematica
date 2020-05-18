@@ -1,11 +1,13 @@
 FROM ruby:2.5
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client yarn
+RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
 RUN mkdir /myapp
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
 RUN bundle install
 RUN bundle exec rails webpacker:install
+FROM node:6.7.0
+RUN npm install -g yarn
 COPY . /myapp
 
 # Add a script to be executed every time the container starts.
