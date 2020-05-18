@@ -1,1 +1,44 @@
-<h1>auhashuasuh</h1>
+<h1 onload="generateExpression()">Treino matemática</h1>
+
+<span id="firstNumber"></span>
+<span id="operation">+</span>
+<span id="secondNumber"></span>
+<span>=</span>
+<input id="answer">
+<button id="btn" onclick="evalAnswer()">Ok</button>
+<span id="result"></span>
+
+<script>
+generateExpression()
+
+function generateExpression() {
+    var firstNumber = Math.floor(Math.random() * 10 + 1);
+    var secondNumber = Math.floor(Math.random() * 10 + 1);
+    var operation = "+"
+    document.getElementById("firstNumber").innerHTML = firstNumber;
+    document.getElementById("operation").innerHTML = operation;
+    document.getElementById("secondNumber").innerHTML = secondNumber;
+}
+
+var input = document.getElementById("answer");
+input.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+   event.preventDefault();
+   document.getElementById("btn").click();
+  }
+});
+
+function evalAnswer() {
+    firstNumber = parseInt(document.getElementById("firstNumber").innerHTML)
+    secondNumber = parseInt(document.getElementById("secondNumber").innerHTML)
+    answer = document.getElementById("answer").value;
+    if(answer == firstNumber + secondNumber) {
+        document.getElementById("answer").value = "";
+        document.getElementById("result").innerHTML = "Correto";
+        generateExpression()
+
+    } else {
+        document.getElementById("result").innerHTML = 'Errado'
+    }
+}
+</script>
