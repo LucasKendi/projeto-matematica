@@ -1,0 +1,2 @@
+docker build -t projeto -f Dockerfile.rails . --no-cache
+docker run -it projeto rails new myapp --database=postgresql
